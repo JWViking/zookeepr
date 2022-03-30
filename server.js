@@ -1,7 +1,9 @@
 //requires express
 const express = require('express');
 //requires the data json file
-const { animals } = require('./data/animals.json');
+const { animals } = require('./data/animals');
+//initiate the server
+const app = express();
 
 
 //this adds the route for the fetch and a callback 
