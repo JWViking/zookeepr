@@ -2,6 +2,8 @@
 const express = require('express');
 //requires the data json file
 const { animals } = require('./data/animals');
+//set default PORT to process.env.PORT or 3001
+const PORT = process.env.PORT || 3001;
 //initiate the server
 const app = express();
 
@@ -55,6 +57,6 @@ app.get('/api/animals', (req,res) => {
 });
 
 //This tells the server to listen for (fetch) requests. Always used at end of the server.js file
-app.listen(3001, () => {
-    console.log(`API now on port 3001!`);
+app.listen(PORT, () => {
+    console.log(`API now on port ${PORT}!`);
 });
