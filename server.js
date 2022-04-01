@@ -73,6 +73,17 @@ app.get('/api/animals/:id', (req, res) => {
     }
   });
 
+  app.post('/api/animals', (req, res) => {
+      //req.body is where our incoming content will be 
+      console.log(req.body);
+      res.json(req.body);
+  });
+
+  //parse incoming strong or array data
+  app.use(express.urlencoded({extended: true}));
+  //parse incoming JSON data
+  app.use(express.json());
+
 //This tells the server to listen for (fetch) requests. Always used at end of the server.js file
 app.listen(PORT, () => {
     console.log(`API now on port ${PORT}!`);
