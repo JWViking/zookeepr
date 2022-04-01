@@ -46,6 +46,12 @@ function filterByQuery(query, animalsArray) {
     return filteredResults;
   }
 
+  //function for the param get route below
+function findById(id, animalsArray) {
+    const result = animalsArray.filter(animal => animal.id === id)[0];
+    return result;
+  }
+
 //this adds the route for the fetch and a callback 
 //function that is executed every time the GET request happens.
 app.get('/api/animals', (req,res) => {
@@ -55,6 +61,17 @@ app.get('/api/animals', (req,res) => {
     }
     res.json(results);
 });
+
+// this param route returns only one animal because it uses the function findbyId().
+// It also addresses the possiblity of no matching result and returns an error code.
+app.get('/api/animals/:id', (req, res) => {
+    const result = findById(req.params.id, animals);
+    if (result) {
+      res.json(result);
+    } else {
+      res.send(404);
+    }
+  });
 
 //This tells the server to listen for (fetch) requests. Always used at end of the server.js file
 app.listen(PORT, () => {
